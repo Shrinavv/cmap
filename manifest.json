@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "Cookie Insight Dashboard",
+  "version": "1.0",
+  "description": "A comprehensive view of all stored cookies with search, sort, and management tools.",
+  "permissions": [
+    "cookies"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "48": "icon.png"
+  }
+}

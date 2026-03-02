@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Insight Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cookie Insight Dashboard</h1>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search by domain or name...">
+      <button id="clearFilteredBtn" disabled>Clear All Filtered</button>
+    </div>
+    <div class="table-wrapper">
+      <table id="cookieTable">
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">Domain</th>
+            <th onclick="sortTable(1)">Name</th>
+            <th onclick="sortTable(2)">Expiration</th>
+            <th onclick="sortTable(3)">Secure</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="cookieTableBody">
+          <!-- Cookies will be populated here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
