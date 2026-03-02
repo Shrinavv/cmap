@@ -1,207 +1,124 @@
 /* ==========================================================================
-   Cookie Insight Dashboard - Popup Styles (Scrollbar Fix)
+   Universal Browser Extension Styles (Chrome, Firefox, Edge)
    ========================================================================== */
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* CHROME FIX: Chrome ignores manifest height; it looks here.
+   FIREFOX FIX: Firefox needs a defined height to trigger scrollbars.
+*/
+html {
+  width: 720px;
+  height: 600px;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f3f4f6; /* Solid color is safer than complex gradients for performance */
   color: #1f2937;
-  width: 720px;
-  min-height: 480px;
-  overflow: hidden;
+  overflow: hidden; /* Important: Prevents double scrollbars */
 }
 
 .container {
-  padding: 16px;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100vh; /* Fill the entire popup */
+  padding: 16px;
 }
 
 h1 {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.25rem;
   margin: 0 0 12px 0;
-  color: #111827;
+  flex-shrink: 0;
   text-align: center;
-  letter-spacing: -0.025em;
 }
 
+/* ────────────────────────────────────────────────
+   Controls (Search Bar)
+   ──────────────────────────────────────────────── */
 .controls {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 12px;
+  flex-shrink: 0; 
 }
 
 #searchInput {
   flex: 1;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 1rem;
-  background: white;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-#searchInput:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-#clearFilteredBtn {
-  padding: 10px 16px;
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-#clearFilteredBtn:hover:not(:disabled) {
-  background-color: #dc2626;
-}
-
-#clearFilteredBtn:disabled {
-  background-color: #9ca3af;
-  cursor: not-allowed;
+  border-radius: 4px;
 }
 
 /* ────────────────────────────────────────────────
-   Scrollable table area – FIXED for reliable scrollbar
+   The Scrollable Area (Universal Fix)
    ──────────────────────────────────────────────── */
 .table-wrapper {
-  flex: 1 1 auto;
-  min-height: 200px;                   /* fallback to force scroll if few rows */
-  overflow-y: scroll;                  /* always show scrollbar track when content overflows */
+  flex: 1 1 auto;   /* Grow and shrink as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  background: white;
+  min-height: 0;    /* The "Secret" fix for Flexbox scrolling */
+  background: #ffffff;
   border: 1px solid #e5e7eb;
+  border-radius: 6px;
 }
 
-/* Scrollbar styling – visible and modern */
-.table-wrapper::-webkit-scrollbar {
-  width: 10px;
-}
 
-.table-wrapper::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 5px;
-  margin: 2px;
-}
 
-.table-wrapper::-webkit-scrollbar-thumb {
-  background: #9ca3af;
-  border-radius: 5px;
-  border: 2px solid #f1f5f9;
-}
-
-.table-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
-}
-
-/* Table */
-#cookieTable {
+/* Table Layout */
+table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: auto;
+  table-layout: fixed; /* Prevents table from jumping widths */
 }
 
 thead {
   position: sticky;
   top: 0;
-  background: #f8fafc;
-  z-index: 10;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  background: #f9fafb;
+  z-index: 20;
 }
 
-th, td {
-  padding: 10px 12px;
+th {
+  padding: 10px;
+  border-bottom: 2px solid #e5e7eb;
   text-align: left;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+td {
+  padding: 10px;
   border-bottom: 1px solid #f3f4f6;
-}
-
-/* Name column – wraps properly */
-th:nth-child(2),
-td:nth-child(2) {
-  max-width: 240px;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-  hyphens: auto;
-}
-
-/* Other columns */
-th:nth-child(1),
-td:nth-child(1) { max-width: 180px; }
-th:nth-child(3),
-td:nth-child(3) { max-width: 160px; }
-th:nth-child(4),
-td:nth-child(4) { width: 80px; text-align: center; }
-th:nth-child(5),
-td:nth-child(5) { width: 100px; text-align: center; }
-
-tr:hover {
-  background: #f8fafc;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-/* Delete button */
-.delete-btn {
-  padding: 6px 12px;
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 6px;
   font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
+  word-wrap: break-word; /* Ensures long cookie names don't break layout */
 }
 
-.delete-btn:hover {
-  background-color: #dc2626;
-  transform: translateY(-1px);
+/* Specific Column Widths */
+.col-domain { width: 30%; }
+.col-name   { width: 40%; }
+.col-action { width: 30%; text-align: center; }
+
+/* Custom Scrollbar for a modern look across browsers */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
 }
-
-.delete-btn:active {
-  transform: translateY(0);
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
-
-.delete-btn:disabled {
-  background-color: #9ca3af;
-  cursor: not-allowed;
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
-
-/* Responsive */
-@media (max-width: 600px) {
-  body {
-    width: 100%;
-    min-height: 100vh;
-  }
-
-  .container {
-    padding: 16px;
-  }
-
-  .table-wrapper {
-    border-radius: 0.5rem;
-  }
-
-  th, td {
-    padding: 8px 10px;
-    font-size: 0.9rem;
-  }
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
 }
