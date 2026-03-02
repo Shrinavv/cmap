@@ -7,11 +7,15 @@ function loadCookies() {
       cookies.forEach(cookie => {
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td>${cookie.domain || 'N/A'}</td>
-          <td>${cookie.name || 'N/A'}</td>
-          <td>${cookie.expirationDate ? new Date(cookie.expirationDate * 1000).toLocaleString() : 'Session'}</td>
-          <td>${cookie.secure ? 'Yes' : 'No'}</td>
-          <td><button class="delete-btn" data-domain="${cookie.domain}" data-name="${cookie.name}">Delete</button></td>
+            <td>${cookie.domain || 'N/A'}</td>
+            <td>${cookie.name || 'N/A'}</td>
+            <td>${cookie.expirationDate ? new Date(cookie.expirationDate * 1000).toLocaleString() : 'Session'}</td>
+            <td>${cookie.secure ? 'Yes' : 'No'}</td>
+            <td>
+                <button class="delete-btn" data-domain="${cookie.domain || ''}" data-name="${cookie.name}">
+                Delete
+                </button>
+            </td>
         `;
         tableBody.appendChild(row);
       });
@@ -37,11 +41,22 @@ function deleteCookie(event) {
   const domain = button.dataset.domain;
   const name = button.dataset.name;
 
+  if (!domain || !name) {
+    console.error('Missing domain or name for delete');
+    return;
+  }
+
   browser.cookies.remove({ url: `https://${domain}`, name: name })
     .then(() => {
+      console.log(`Deleted ${name} from ${domain}`);
       button.closest('tr').remove();
+      // Optional: refresh table
+      loadCookies();
     })
-    .catch(error => console.error('Error deleting cookie:', error));
+    .catch(error => {
+      console.error('Delete failed:', error);
+      alert('Could not delete cookie: ' + error.message);
+    });
 }
 
 function searchCookies() {

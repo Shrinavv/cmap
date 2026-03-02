@@ -1,0 +1,207 @@
+/* ==========================================================================
+   Cookie Insight Dashboard - Popup Styles (Scrollbar Fix)
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+  color: #1f2937;
+  width: 720px;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.container {
+  padding: 16px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #111827;
+  text-align: center;
+  letter-spacing: -0.025em;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+#searchInput {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+#clearFilteredBtn {
+  padding: 10px 16px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#clearFilteredBtn:hover:not(:disabled) {
+  background-color: #dc2626;
+}
+
+#clearFilteredBtn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ────────────────────────────────────────────────
+   Scrollable table area – FIXED for reliable scrollbar
+   ──────────────────────────────────────────────── */
+.table-wrapper {
+  flex: 1 1 auto;
+  min-height: 200px;                   /* fallback to force scroll if few rows */
+  overflow-y: scroll;                  /* always show scrollbar track when content overflows */
+  overflow-x: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  background: white;
+  border: 1px solid #e5e7eb;
+}
+
+/* Scrollbar styling – visible and modern */
+.table-wrapper::-webkit-scrollbar {
+  width: 10px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 5px;
+  margin: 2px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 5px;
+  border: 2px solid #f1f5f9;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Table */
+#cookieTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+/* Name column – wraps properly */
+th:nth-child(2),
+td:nth-child(2) {
+  max-width: 240px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  hyphens: auto;
+}
+
+/* Other columns */
+th:nth-child(1),
+td:nth-child(1) { max-width: 180px; }
+th:nth-child(3),
+td:nth-child(3) { max-width: 160px; }
+th:nth-child(4),
+td:nth-child(4) { width: 80px; text-align: center; }
+th:nth-child(5),
+td:nth-child(5) { width: 100px; text-align: center; }
+
+tr:hover {
+  background: #f8fafc;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Delete button */
+.delete-btn {
+  padding: 6px 12px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+.delete-btn:active {
+  transform: translateY(0);
+}
+
+.delete-btn:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  .table-wrapper {
+    border-radius: 0.5rem;
+  }
+
+  th, td {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+  }
+}
