@@ -46,7 +46,7 @@ function loadCookies() {
                                 data-url="${cookieUrl}" 
                                 data-name="${cookie.name}"
                                 data-store="${cookie.storeId || ''}">
-                        Delete
+                        Delete &#x1F5D1;
                         </button>
                     </td>
                 `;

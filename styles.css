@@ -122,3 +122,26 @@ td {
 .table-wrapper::-webkit-scrollbar-thumb:hover {
   background: #bbb;
 }
+.delete-btn{
+  background-color: rgb(255, 57, 57);
+  color: white;
+  border-style: none;
+  border-radius: 8px;
+  border: 2px solid black;
+  padding: 6px;
+}
+.delete-btn:hover{
+  background-color: rgb(248, 24, 24);
+}
+#clearFilteredBtn{
+  background-color: rgb(248, 24, 24);
+  color: white;
+  border-style: none;
+  border-radius: 8px;
+  border: 2px solid black;
+  padding: 3px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+#clearFilteredBtn:hover{
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
