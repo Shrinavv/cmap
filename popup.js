@@ -40,13 +40,13 @@ function loadCookies() {
                     <td>${cookie.domain || 'N/A'}</td>
                     <td>${cookie.name || 'N/A'}</td>
                     <td>${cookie.expirationDate ? new Date(cookie.expirationDate * 1000).toLocaleString() : 'Session'}</td>
-                    <td>${cookie.secure ? 'Yes' : 'No'}</td>
+                    <td >${cookie.secure ? 'Yes' : 'No'}</td>
                     <td>
                         <button class="delete-btn" 
                                 data-url="${cookieUrl}" 
                                 data-name="${cookie.name}"
                                 data-store="${cookie.storeId || ''}">
-                        Delete &#x1F5D1;
+                        Delete 🗑️
                         </button>
                     </td>
                 `;
