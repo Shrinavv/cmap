@@ -31,7 +31,6 @@ const cookieDescriptions = {
   NID: "Stores user preferences and personalization",
 };
 
-// 🔥 Smart fallback
 const getCookieDescription = (name) => {
   if (!name) return "Unknown cookie";
 

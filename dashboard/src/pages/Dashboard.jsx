@@ -12,7 +12,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div style={{ padding: '2rem' }}>
+    <div style={{ padding: '1rem' }}>
       <h1>My Synced Cookies</h1>
       <CookieTable cookies={cookies} />
     </div>
