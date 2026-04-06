@@ -131,30 +131,48 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Login
-  document.getElementById('loginBtn').addEventListener('click', async () => {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    try {
-      await window.loginExt(email, password);
-      authSection.classList.add('hidden');
-      mainSection.classList.remove('hidden');
-      loadCookies();
-    } catch (e) {
-      document.getElementById('authMessage').textContent = e.message;
-    }
-  });
+document.getElementById('loginBtn').addEventListener('click', async () => {
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+
+  const email = emailInput.value;
+  const password = passwordInput.value;
+
+  try {
+    await window.loginExt(email, password);
+
+
+    emailInput.value = '';
+    passwordInput.value = '';
+
+    authSection.classList.add('hidden');
+    mainSection.classList.remove('hidden');
+    loadCookies();
+  } catch (e) {
+    document.getElementById('authMessage').textContent = e.message;
+  }
+});
 
   // Register
-  document.getElementById('registerBtn').addEventListener('click', async () => {
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-    try {
-      await window.registerExt(email, password, 'User'); // name optional
-      authSection.classList.add('hidden');
-      mainSection.classList.remove('hidden');
-      loadCookies();
-    } catch (e) {
-      document.getElementById('authMessage').textContent = e.message;
-    }
-  });
+document.getElementById('registerBtn').addEventListener('click', async () => {
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+
+  const email = emailInput.value;
+  const password = passwordInput.value;
+
+  try {
+    await window.registerExt(email, password, 'User');
+
+
+    emailInput.value = '';
+    passwordInput.value = '';
+
+    authSection.classList.add('hidden');
+    mainSection.classList.remove('hidden');
+    loadCookies();
+  } catch (e) {
+    document.getElementById('authMessage').textContent = e.message;
+  }
+});
 });
