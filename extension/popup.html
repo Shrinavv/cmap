@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie CMP v2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cookie CMP Dashboard v2</h1>
+
+    <!-- AUTH SECTION -->
+    <div id="authSection">
+      <div class="controls">
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+      </div>
+      <div class="controls">
+        <button id="loginBtn">Login</button>
+        <button id="registerBtn">Register</button>
+      </div>
+      <p id="authMessage" style="color:red;text-align:center;margin-top:8px;"></p>
+    </div>
+
+    <!-- MAIN DASHBOARD SECTION -->
+    <div id="mainSection" class="hidden">
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="Search by domain or name...">
+        <button id="clearFilteredBtn" disabled>Delete All Filtered ⚠️</button>
+        <button id="syncBtn">Sync to Dashboard</button>
+        <button id="logoutBtn">Logout</button>
+      </div>
+
+      <div class="table-wrapper">
+        <table id="cookieTable">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Name</th>
+              <th>Expiration</th>
+              <th>Secure</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cookieTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -22,15 +22,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #f3f4f6; /* Solid color is safer than complex gradients for performance */
+  background: #f3f4f6; 
   color: #1f2937;
-  overflow: hidden; /* Important: Prevents double scrollbars */
+  overflow: hidden; 
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Fill the entire popup */
+  height: 100vh; 
   padding: 16px;
 }
 
@@ -62,8 +62,8 @@ h1 {
    The Scrollable Area (Universal Fix)
    ──────────────────────────────────────────────── */
 .table-wrapper {
-  flex: 1 1 auto;   /* Grow and shrink as needed */
-  overflow-y: auto; /* Enable vertical scrolling */
+  flex: 1 1 auto;   
+  overflow-y: auto; 
   overflow-x: hidden;
   min-height: 0;    /* The "Secret" fix for Flexbox scrolling */
   background: #ffffff;

@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Cookie Insight Dashboard",
-  "version": "1.0",
+  "name": "Cookie CMP Dashboard v2",
+  "version": "2.0",
   "permissions": [
     "cookies",
     "activeTab",
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "host_permissions": [
     "<all_urls>"
