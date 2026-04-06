@@ -9,8 +9,10 @@ avaiable in your browser, and an extension that gives the ability to view the co
 ```powershell
 git clone https://github.com/Shrinavv/cmap.git
 cd cmap/backend
+npm install
 npm run dev
 cd ../dashboard
+npm install
 npm run dev
 ```
 
