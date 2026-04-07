@@ -7,9 +7,9 @@ const styles = {
   },
   tooltipBox: {
     position: "absolute",
-    bottom: "60%",
+    bottom: "40%",
     left: "100%",
-    transform: "translateX(-100%)",
+    transform: "translateX(-115%)",
     background: "#222",
     color: "#fff",
     padding: "6px 10px",
@@ -54,6 +54,24 @@ const getCookieDescription = (name) => {
 
   return "General-purpose cookie (purpose unclear)";
 };
+const maskValue = (value) => {
+  if (!value) return "N/A";
+
+  if (value.length <= 12) return value;
+
+  return value.slice(0, 6) + "..." + value.slice(-6);
+};
+
+const getCookieType = (name) => {
+  const n = name?.toLowerCase() || "";
+
+  if (n.includes("sid") || n.includes("sess")) return "Secure / Session";
+  if (n.includes("auth")) return "Authentication";
+  if (n.includes("ga") || n.includes("track")) return "Analytics";
+  if (n.includes("ads")) return "Ads";
+
+  return "Other";
+};
 
 const CookieTable = ({ cookies }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -91,7 +109,12 @@ const CookieTable = ({ cookies }) => {
                 )}
               </td>
 
-              <td>{cookie.value}</td>
+              <td>
+                <div>{maskValue(cookie.value)}</div>
+                <small style={{ color: "#666" }}>
+                  {getCookieType(cookie.name)}
+                </small>
+              </td>
               <td>{cookie.expirationDate}</td>
               <td>{cookie.secure ? 'Yes' : 'No'}</td>
             </tr>
