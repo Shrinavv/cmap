@@ -141,6 +141,7 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
   try {
     await window.loginExt(email, password);
 
+    document.getElementById('authMessage').textContent = "";
 
     emailInput.value = '';
     passwordInput.value = '';
@@ -148,6 +149,7 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
     authSection.classList.add('hidden');
     mainSection.classList.remove('hidden');
     loadCookies();
+
   } catch (e) {
     document.getElementById('authMessage').textContent = e.message;
   }
@@ -157,22 +159,28 @@ document.getElementById('loginBtn').addEventListener('click', async () => {
 document.getElementById('registerBtn').addEventListener('click', async () => {
   const emailInput = document.getElementById('loginEmail');
   const passwordInput = document.getElementById('loginPassword');
+  const authMessage = document.getElementById('authMessage');
 
   const email = emailInput.value;
   const password = passwordInput.value;
 
   try {
     await window.registerExt(email, password, 'User');
-
+    authMessage.textContent = "Registration successful ✅";
 
     emailInput.value = '';
     passwordInput.value = '';
 
-    authSection.classList.add('hidden');
-    mainSection.classList.remove('hidden');
+    document.getElementById('authSection').classList.add('hidden');
+    document.getElementById('mainSection').classList.remove('hidden');
+
     loadCookies();
+    setTimeout(() => {
+      authMessage.textContent = "";
+    }, 1000);
+
   } catch (e) {
-    document.getElementById('authMessage').textContent = e.message;
+    authMessage.textContent = e.message;
   }
 });
 });

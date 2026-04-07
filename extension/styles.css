@@ -145,3 +145,51 @@ td {
   padding: 0.5rem;
   transition: 0.3s ease-in-out;
 }
+#loginBtn{
+      background-color: rgb(0, 0, 0);
+  color: white;
+  border-style: none;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 0.5rem;
+  transition: 0.3s ease-in-out;
+}
+#registerBtn{
+      background-color: rgb(0, 0, 0);
+  color: white;
+  border-style: none;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 0.5rem;
+  transition: 0.3s ease-in-out;
+}
+#syncBtn{
+    background-color: rgb(0, 0, 0);
+  color: white;
+  border-style: none;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 0.5rem;
+  transition: 0.3s ease-in-out;
+}
+#logoutBtn{
+      background-color: rgb(0, 0, 0);
+  color: white;
+  border-style: none;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 0.5rem;
+  transition: 0.3s ease-in-out;
+}
+#loginEmail{
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+#loginPassword{
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}

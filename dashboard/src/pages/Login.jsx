@@ -22,18 +22,78 @@ const Login = () => {
     }
   };
 
-  return (
-    <div style={{ maxWidth: '400px', margin: '100px auto', padding: '2rem' }}>
-      <h2>Login</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required style={{ width: '100%', padding: '10px', margin: '10px 0' }} />
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: '100%', padding: '10px', margin: '10px 0' }} />
-        <button type="submit" style={{ width: '100%', padding: '12px' }}>Login</button>
-      </form>
-      <p>Don't have an account? <a href="/register">Register</a></p>
-    </div>
-  );
+return (
+  <div
+    style={{
+      maxWidth: '400px',
+      margin: '160px auto',
+      padding: '4rem',
+      background: "rgb(245,245,245)",
+      borderRadius: "10px",
+      textAlign: "center"
+    }}
+  >
+    <h2 style={{ marginBottom: "1.5rem" }}>Login</h2>
+
+    {error && <p style={{ color: 'red' }}>{error}</p>}
+
+    <form
+      onSubmit={handleLogin}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px"
+      }}
+    >
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required
+        style={{
+          width: '100%',
+          padding: '10px',
+          border: "1px solid #d1d5db",
+          borderRadius: "4px"
+        }}
+      />
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        required
+        style={{
+          width: '100%',
+          padding: '10px',
+          border: "1px solid #d1d5db",
+          borderRadius: "4px"
+        }}
+      />
+
+      <button
+        type="submit"
+        style={{
+          padding: '0.8rem',
+          background: "#6baed6",
+          border: "0px",
+          borderRadius: "2rem",
+          color: "white",
+          cursor: "pointer",
+          marginTop: "10px"
+        }}
+      >
+        Login
+      </button>
+    </form>
+
+    <p style={{ marginTop: "1rem" }}>
+      Don't have an account? <a href="/register">Register</a>
+    </p>
+  </div>
+);
 };
 
 export default Login;

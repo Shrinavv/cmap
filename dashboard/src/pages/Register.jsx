@@ -24,16 +24,89 @@ const Register = () => {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '100px auto', padding: '2rem' }}>
-      <h2>Register</h2>
+    <div
+      style={{
+        maxWidth: '400px',
+        margin: '160px auto',
+        padding: '2rem',
+        background: "rgb(245,245,245)",
+        borderRadius: "10px",
+        textAlign: "center",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.1)"
+      }}
+    >
+      <h2 style={{ marginBottom: "1.5rem" }}>Register</h2>
+
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleRegister}>
-        <input type="text" placeholder="Name" value={name} onChange={e => setName(e.target.value)} style={{ width: '100%', padding: '10px', margin: '10px 0' }} />
-        <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required style={{ width: '100%', padding: '10px', margin: '10px 0' }} />
-        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required style={{ width: '100%', padding: '10px', margin: '10px 0' }} />
-        <button type="submit" style={{ width: '100%', padding: '12px' }}>Register</button>
+
+      <form
+        onSubmit={handleRegister}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px"
+        }}
+      >
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '10px',
+            border: "1px solid #d1d5db",
+            borderRadius: "4px"
+          }}
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+          style={{
+            width: '100%',
+            padding: '10px',
+            border: "1px solid #d1d5db",
+            borderRadius: "4px"
+          }}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          required
+          style={{
+            width: '100%',
+            padding: '10px',
+            border: "1px solid #d1d5db",
+            borderRadius: "4px"
+          }}
+        />
+
+        <button
+          type="submit"
+          style={{
+            padding: '0.8rem',
+            background: "#6baed6",
+            border: "0px",
+            borderRadius: "2rem",
+            color: "white",
+            cursor: "pointer",
+            marginTop: "10px"
+          }}
+        >
+          Register
+        </button>
       </form>
-      <p>Already have an account? <a href="/login">Login</a></p>
+
+      <p style={{ marginTop: "1rem" }}>
+        Already have an account? <a href="/login">Login</a>
+      </p>
     </div>
   );
 };

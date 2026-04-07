@@ -116,15 +116,15 @@ const Consent = () => {
             value={domain}
             onChange={(e) => setDomain(e.target.value)}
             required
-            style={{ width: '100%', padding: '12px', margin: '10px 0', fontSize: '16px' }}
-          />
+            style={{ width: '50%', padding: '12px', margin: '10px 0', fontSize: '16px',border:"2px solid #d1d5db",borderRadius:"4px" }}
+          /><br></br>
           <input
             type="text"
             placeholder="Subject"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
             required
-            style={{ width: '100%', padding: '12px', margin: '10px 0', fontSize: '16px' }}
+            style={{ width: '95%', padding: '12px', margin: '10px 0', fontSize: '16px',border:"2px solid #d1d5db",borderRadius:"4px" }}
           />
           <textarea
             placeholder="Describe your grievance in detail..."
@@ -132,7 +132,7 @@ const Consent = () => {
             onChange={(e) => setDescription(e.target.value)}
             rows="5"
             required
-            style={{ width: '100%', padding: '12px', margin: '10px 0', fontSize: '16px' }}
+            style={{ width: '95%', padding: '12px', margin: '10px 0', fontSize: '16px',border:"2px solid #d1d5db",borderRadius:"4px" }}
           />
           <button 
             type="submit" 
