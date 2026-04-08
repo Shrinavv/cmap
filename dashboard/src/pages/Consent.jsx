@@ -94,7 +94,7 @@ const Consent = () => {
               borderRadius: '6px',
               fontSize: '16px'
             }}
-          >
+          ></button>
           <input type="text" placeholder="Domain (e.g. google.com)" value={domain} onChange={e => setDomain(e.target.value)} required style={{width:'100%', padding:'12px', margin:'10px 0'}} />
           <input type="text" placeholder="Subject" value={subject} onChange={e => setSubject(e.target.value)} required style={{width:'100%', padding:'12px', margin:'10px 0'}} />
           <textarea placeholder="Describe your grievance..." value={description} onChange={e => setDescription(e.target.value)} rows="5" required style={{width:'100%', padding:'12px', margin:'10px 0'}} />
