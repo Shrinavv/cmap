@@ -4,11 +4,11 @@ import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Consent from './pages/Consent.jsx';
+import AdminGrievances from './pages/AdminGrievances.jsx';   // ← NEW IMPORT
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function Layout() {
   const location = useLocation();
-
   const hideNavbar =
     location.pathname === '/login' ||
     location.pathname === '/register';
@@ -16,12 +16,21 @@ function Layout() {
   return (
     <>
       {!hideNavbar && <Navbar />}
-
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
         <Route path="/consent" element={<ProtectedRoute><Consent /></ProtectedRoute>} />
+        
+        {/* NEW ADMIN ROUTE */}
+        <Route 
+          path="/admin/grievances" 
+          element={
+            <ProtectedRoute>
+              <AdminGrievances />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </>
   );
