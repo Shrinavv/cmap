@@ -22,11 +22,12 @@ const AdminGrievances = () => {
     fetchGrievances();
   }, []);
 
+  // Save Reply (keeps current status)
   const saveReply = async (id) => {
     try {
       await api.put(`/consent/grievance/${id}`, {
-        status: 'notified',
         fiduciaryReply: replyText
+        // Do NOT send status here → preserve existing status
       });
       setMessage('✅ Reply saved successfully');
       setReplyingId(null);
@@ -34,27 +35,30 @@ const AdminGrievances = () => {
       fetchGrievances();
     } catch (err) {
       setMessage('❌ Failed to save reply');
+      console.error(err);
     }
   };
 
+  // Update Status (keeps existing reply)
   const updateStatus = async (id) => {
     if (!selectedStatus) return;
     try {
       await api.put(`/consent/grievance/${id}`, {
-        status: selectedStatus,
-        fiduciaryReply: '' // Keep existing reply
+        status: selectedStatus
+        // Do NOT send fiduciaryReply → preserve existing reply
       });
       setMessage(`✅ Status updated to ${selectedStatus.toUpperCase()}`);
       setUpdatingId(null);
       fetchGrievances();
     } catch (err) {
       setMessage('❌ Failed to update status');
+      console.error(err);
     }
   };
 
   return (
     <div style={{ padding: '2rem' }}>
-      <h1>👑 Admin - Manage All Grievances</h1>
+      <h1>Admin - Manage All Grievances</h1>
       {message && <p style={{ color: 'green', fontWeight: 'bold' }}>{message}</p>}
 
       <table border="1" cellPadding="12" style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
@@ -81,29 +85,36 @@ const AdminGrievances = () => {
                 {g.fiduciaryReply || <em style={{ color: '#888' }}>No reply yet</em>}
               </td>
               <td>
-                <button 
-                  onClick={() => { setReplyingId(g._id); setReplyText(g.fiduciaryReply || ''); }}
+                <button
+                  onClick={() => { 
+                    setReplyingId(g._id); 
+                    setReplyText(g.fiduciaryReply || ''); 
+                  }}
                   style={{ marginRight: '8px', padding: '6px 12px', background: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px' }}
                 >
                   Reply
                 </button>
-                <button 
-                  onClick={() => { setUpdatingId(g._id); setSelectedStatus(g.status); }}
+                <button
+                  onClick={() => { 
+                    setUpdatingId(g._id); 
+                    setSelectedStatus(g.status); 
+                  }}
                   style={{ padding: '6px 12px', background: '#eab308', color: 'black', border: 'none', borderRadius: '4px' }}
                 >
                   Update Status
                 </button>
 
-                {/* Reply Box */}
+                {/* Reply Input Box */}
                 {replyingId === g._id && (
                   <div style={{ marginTop: '10px' }}>
                     <textarea
                       value={replyText}
                       onChange={(e) => setReplyText(e.target.value)}
                       rows="3"
-                      style={{ width: '100%', padding: '8px' }}
+                      style={{ width: 'auto', padding: '8px',resize:"none" }}
                       placeholder="Type reply from the website..."
                     />
+                    <br />
                     <button onClick={() => saveReply(g._id)} style={{ marginRight: '8px', background: '#16a34a', color: 'white' }}>Save Reply</button>
                     <button onClick={() => setReplyingId(null)}>Cancel</button>
                   </div>
@@ -121,6 +132,7 @@ const AdminGrievances = () => {
                       <option value="resolved">Resolved</option>
                       <option value="rejected">Rejected</option>
                     </select>
+                    <br />
                     <button onClick={() => updateStatus(g._id)} style={{ background: '#16a34a', color: 'white', marginRight: '8px' }}>Save Status</button>
                     <button onClick={() => setUpdatingId(null)}>Cancel</button>
                   </div>

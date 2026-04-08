@@ -83,22 +83,9 @@ const Consent = () => {
             required
             style={{ width: '95%', padding: '12px', margin: '10px 0', fontSize: '16px',border:"2px solid #d1d5db",borderRadius:"4px",resize:"none" }}
           />
-          <button 
-            type="submit" 
-            disabled={loading}
-            style={{ 
-              padding: '12px 25px', 
-              background: '#dc2626', 
-              color: 'white', 
-              border: 'none', 
-              borderRadius: '6px',
-              fontSize: '16px'
-            }}
-          ></button>
-          <input type="text" placeholder="Domain (e.g. google.com)" value={domain} onChange={e => setDomain(e.target.value)} required style={{width:'100%', padding:'12px', margin:'10px 0'}} />
-          <input type="text" placeholder="Subject" value={subject} onChange={e => setSubject(e.target.value)} required style={{width:'100%', padding:'12px', margin:'10px 0'}} />
-          <textarea placeholder="Describe your grievance..." value={description} onChange={e => setDescription(e.target.value)} rows="5" required style={{width:'100%', padding:'12px', margin:'10px 0'}} />
-          <button type="submit" disabled={loading} style={{padding:'12px 25px', background:'#dc2626', color:'white', border:'none', borderRadius:'6px'}}>
+
+          <button type="submit" disabled={loading} style={{padding:'12px 25px', background:'#dc2626', color:'white', border:'none', borderRadius:'6px',
+              fontSize: '16px'}}>
             {loading ? 'Submitting...' : 'Submit & Notify Website'}
           </button>
         </form>

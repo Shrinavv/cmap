@@ -57,7 +57,7 @@ const Navbar = () => {
             to="/admin/grievances"
             style={{ color: '#60a5fa', fontWeight: '600' }}
           >
-            👑 Admin Grievances
+            Admin Grievances
           </Link>
         )}
       </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
         {user ? (
           <>
             <span style={{ marginRight: '1rem' }}>
-              {user.role === 'admin' ? '👑 Admin' : 'User'} — {user.name || user.email}
+              {user.role === 'admin' ? 'Admin' : 'User'} — {user.name || user.email}
             </span>
 
             <button
