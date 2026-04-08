@@ -132,7 +132,7 @@ const Consent = () => {
             onChange={(e) => setDescription(e.target.value)}
             rows="5"
             required
-            style={{ width: '95%', padding: '12px', margin: '10px 0', fontSize: '16px',border:"2px solid #d1d5db",borderRadius:"4px" }}
+            style={{ width: '95%', padding: '12px', margin: '10px 0', fontSize: '16px',border:"2px solid #d1d5db",borderRadius:"4px",resize:"none" }}
           />
           <button 
             type="submit" 

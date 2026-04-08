@@ -3,7 +3,8 @@ import { useState } from "react";
 const styles = {
   tooltipCell: {
     position: "relative",
-    cursor: "pointer"
+    cursor: "pointer",
+    wordBreak: "break-word"
   },
   tooltipBox: {
     position: "absolute",
@@ -54,11 +55,10 @@ const getCookieDescription = (name) => {
 
   return "General-purpose cookie (purpose unclear)";
 };
+
 const maskValue = (value) => {
   if (!value) return "N/A";
-
   if (value.length <= 12) return value;
-
   return value.slice(0, 6) + "..." + value.slice(-6);
 };
 
@@ -78,21 +78,31 @@ const CookieTable = ({ cookies }) => {
 
   return (
     <div style={{ overflowX: 'auto' }}>
-      <table border="1" cellPadding="10" style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <table
+        border="1"
+        cellPadding="10"
+        style={{
+          width: '100%',
+          borderCollapse: 'collapse',
+          tableLayout: 'fixed' // ✅ KEY FIX
+        }}
+      >
         <thead>
           <tr>
-            <th>Domain</th>
-            <th>Name</th>
-            <th>Value</th>
-            <th>Expiration</th>
-            <th>Secure</th>
+            <th style={{ width: "20%" }}>Domain</th>
+            <th style={{ width: "20%" }}>Name</th>
+            <th style={{ width: "30%" }}>Value</th>
+            <th style={{ width: "20%" }}>Expiration</th>
+            <th style={{ width: "10%" }}>Secure</th>
           </tr>
         </thead>
 
         <tbody>
           {cookies.map((cookie, i) => (
             <tr key={i}>
-              <td>{cookie.domain}</td>
+              <td style={{ wordBreak: "break-word" }}>
+                {cookie.domain}
+              </td>
 
               <td
                 style={styles.tooltipCell}
@@ -109,14 +119,20 @@ const CookieTable = ({ cookies }) => {
                 )}
               </td>
 
-              <td>
+              <td style={{ wordBreak: "break-word" }}>
                 <div>{maskValue(cookie.value)}</div>
                 <small style={{ color: "#666" }}>
                   {getCookieType(cookie.name)}
                 </small>
               </td>
-              <td>{cookie.expirationDate}</td>
-              <td>{cookie.secure ? 'Yes' : 'No'}</td>
+
+              <td style={{ wordBreak: "break-word" }}>
+                {cookie.expirationDate}
+              </td>
+
+              <td>
+                {cookie.secure ? 'Yes' : 'No'}
+              </td>
             </tr>
           ))}
         </tbody>

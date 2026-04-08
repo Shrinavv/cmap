@@ -28,11 +28,10 @@ const Register = () => {
       style={{
         maxWidth: '400px',
         margin: '160px auto',
-        padding: '2rem',
+        padding: '4rem',
         background: "rgb(245,245,245)",
         borderRadius: "10px",
-        textAlign: "center",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.1)"
+        textAlign: "center"
       }}
     >
       <h2 style={{ marginBottom: "1.5rem" }}>Register</h2>
