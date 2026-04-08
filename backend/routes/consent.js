@@ -8,7 +8,8 @@ const {
   fileGrievance, 
   getConsents,
   getGrievances,
-  updateGrievanceStatus     // ← Make sure this is imported
+  updateGrievanceStatus,
+  getAllGrievances 
 } = require('../controllers/consentController');
 
 router.post('/record', auth, recordConsent);
@@ -16,6 +17,7 @@ router.post('/withdraw', auth, withdrawConsent);
 router.post('/grievance', auth, fileGrievance);
 router.get('/', auth, getConsents);
 router.get('/grievances', auth, getGrievances);
-router.put('/grievance/:id', auth, updateGrievanceStatus);   // ← This line is now correct
+router.get('/admin/grievances', auth, getAllGrievances);
+router.put('/grievance/:id', auth, updateGrievanceStatus);   // ← Important
 
 module.exports = router;

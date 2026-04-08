@@ -131,23 +131,24 @@ const getGrievances = async (req, res) => {
   }
 };
 
-// Update grievance status and store fiduciary reply (Manual by Admin)
+// ADMIN - Update grievance status and/or reply
 const updateGrievanceStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { status, fiduciaryReply } = req.body;
 
-    if (!['resolved', 'rejected'].includes(status)) {
-      return res.status(400).json({ message: "Status must be 'resolved' or 'rejected'" });
+    if (!id) {
+      return res.status(400).json({ message: "Grievance ID is required" });
     }
+
+    const updateData = {};
+    if (status) updateData.status = status;
+    if (fiduciaryReply !== undefined) updateData.fiduciaryReply = fiduciaryReply;
+    updateData.repliedAt = Date.now();
 
     const grievance = await Grievance.findByIdAndUpdate(
       id,
-      { 
-        status,
-        fiduciaryReply: fiduciaryReply || '',
-        repliedAt: Date.now()
-      },
+      updateData,
       { new: true }
     );
 
@@ -157,9 +158,26 @@ const updateGrievanceStatus = async (req, res) => {
 
     res.json({ 
       success: true, 
-      message: `Grievance marked as ${status}`,
+      message: "Grievance updated successfully",
       grievance 
     });
+  } catch (error) {
+    console.error("Update grievance error:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+// ADMIN ONLY - Get ALL grievances
+const getAllGrievances = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: "Access denied. Admin only." });
+    }
+
+    const grievances = await Grievance.find()
+      .populate('userId', 'name email')
+      .sort({ createdAt: -1 });
+
+    res.json({ success: true, grievances });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -171,5 +189,6 @@ module.exports = {
   fileGrievance, 
   getConsents,
   getGrievances,
-  updateGrievanceStatus      // ← Must be here
+  updateGrievanceStatus,
+  getAllGrievances     // ← Add this
 };
